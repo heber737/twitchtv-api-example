@@ -1,14 +1,47 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-function SelectStreamers({ channelList }) {
-    return (
-      <div>
-        <h1>Add/delete streamers to/from the list:</h1>
-        <textarea rows="10" value={channelList} >
-        </textarea>
+function SelectStreamers({ channelList, setShowSelect, onChannelsUpdate }) {
+  const [listInput, setListInput] = useState(channelList);
+
+  function handleListChange(e) {
+    setListInput(e.target.value);
+  }
+
+  return (
+    <div className="p-4 bg-puce">
+      <h1 className="text-xl text-center mb-2">Add or delete streamers:</h1>
+      <p className="mb-4">
+        Enter Twitch streamers IDs (30 max) separated by comma, without blank
+        spaces, and click on Save.
+      </p>
+      <textarea
+        className="block w-11/12 h-40 p-2 mb-4 mx-auto"
+        onChange={(e) => handleListChange(e)}
+        value={listInput}
+      ></textarea>
+      <div className="w-11/12 flex justify-end gap-2 mx-auto">
+        <button
+          className="bg-periwinkle p-2 rounded hover:bg-plavender"
+          onClick={() => {
+            onChannelsUpdate(listInput);
+            setShowSelect(false);
+          }}
+        >
+          Save
+        </button>
+        <button
+          className="bg-periwinkle p-2 rounded hover:bg-plavender"
+          onClick={() => {
+            setListInput(channelList);
+            setShowSelect(false);
+          }}
+        >
+          Discard
+        </button>
       </div>
-    )
+    </div>
+  );
 }
 
 export default SelectStreamers;

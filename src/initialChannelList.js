@@ -1,4 +1,4 @@
-const channelList = [
+const initialChannelList = [
     "ESL_SC2",
     "OgamingSC2",
     "cretetion",
@@ -13,4 +13,4 @@ const channelList = [
     "alondrissa",
   ];
 
-  export default channelList;
+  export default initialChannelList;

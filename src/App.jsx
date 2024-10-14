@@ -2,6 +2,35 @@
 import { useState } from "react";
 import StreamersList from "./components/StreamersList";
 import SelectButton from "./components/SelectButton";
+import SelectStreamers from "./components/SelectStreamers";
+import initialChannelList from "./initialChannelList";
+
+// LOCAL STORAGE AVAILABILITY TEST
+
+function storageAvailable(type) {
+  let storage;
+  try {
+    storage = window[type];
+    const x = "__storage_test__";
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  } catch (e) {
+    return (
+      e instanceof DOMException &&
+      e.name === "QuotaExceededError" &&
+      storage &&
+      storage.length !== 0
+    );
+  }
+}
+
+if (
+  storageAvailable("localStorage") &&
+  !localStorage.getItem("storedChannelList")
+) {
+  localStorage.setItem("storedChannelList", JSON.stringify(initialChannelList));
+}
 
 function App() {
   const [filter, setFilter] = useState("ALL");
@@ -10,6 +39,7 @@ function App() {
       setFilter(value);
     }
   }
+  const [channelList, setChannelList] = useState(JSON.parse(localStorage.getItem("storedChannelList")));
 
   return (
     <div className="w-vw h-full rubik-font bg-slate-600 text-slate-800 overflow-hidden">
@@ -20,6 +50,7 @@ function App() {
         <button className="h-8 w-full text-xl text-center hover:bg-plavender">
           Update Streamers List
         </button>
+        <SelectStreamers channelList={channelList} />
         <div className="bg-periwinkle flex h-8 flex-nowrap items-stretch">
           <SelectButton
             filter={filter}
@@ -40,7 +71,7 @@ function App() {
             bgColor="bg-periwinkle"
           />
         </div>
-        <StreamersList filter={filter} />
+        <StreamersList filter={filter} channelList={channelList} />
       </div>
     </div>
   );

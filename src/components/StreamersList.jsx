@@ -1,13 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-import channelList from "../channelList";
 import ListItem from "./ListItem";
 
-function StreamersList({ filter }) {
+function StreamersList({ filter, channelList }) {
     const [users, setUsers] = useState(undefined);
     const [streaming, setStreaming] = useState(undefined);
-  
-    const channels = channelList;
+    
     const streamingObject = streaming
       ? streaming.data.reduce(
           (a, v) => ({
@@ -63,7 +61,7 @@ function StreamersList({ filter }) {
             `https://twitch-proxy.freecodecamp.rocks/helix/${getUrl(
               "users",
               "login",
-              channels
+              channelList
             )}`
           );
           const userJson = await userResponse.json();
@@ -71,7 +69,7 @@ function StreamersList({ filter }) {
             `https://twitch-proxy.freecodecamp.rocks/helix/${getUrl(
               "streams",
               "user_login",
-              channels
+              channelList
             )}`
           );
           const streamJson = await streamResponse.json();
@@ -83,7 +81,7 @@ function StreamersList({ filter }) {
         }
       }
       getUsersInfo();
-    }, [channels]);
+    }, [channelList]);
   
     if (users) {
       return (

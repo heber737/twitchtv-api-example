@@ -12,11 +12,14 @@ function App() {
   }
 
   return (
-    <div className="w-vw h-full rubik-font bg-white text-slate-800">
+    <div className="w-vw h-full rubik-font bg-slate-600 text-slate-800 overflow-hidden">
       <div className="w-full sm:max-w-xl sm:my-2 min-w-[370px] mx-auto divide-y-2 divide-inherit bg-puce sm:rounded-md overflow-hidden">
         <h1 className="mx-4 h-16 text-center text-4xl leading-[4rem]">
           Twitch Streamers
         </h1>
+        <button className="h-8 w-full text-xl text-center hover:bg-plavender">
+          Update Streamers List
+        </button>
         <div className="bg-periwinkle flex h-8 flex-nowrap items-stretch">
           <SelectButton
             filter={filter}

@@ -5,12 +5,14 @@ export default {
     './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    backgroundColor: {
-      plavender: '#E7BBE3',
-      periwinkle: '#CCD5FF',
-      puce: '#C884A6'
-    },
     extend: {
+      backgroundColor: {
+        transparent: 'transparent',
+        current: 'currentColor',
+        plavender: '#E7BBE3',
+        periwinkle: '#CCD5FF',
+        puce: '#C884A6'
+      },
     },
   },
   plugins: [],

@@ -39,8 +39,6 @@ function App() {
   );
   const [showSelect, setShowSelect] = useState(false);
 
-  console.log(channelList);
-
   function handleButtonClick(value) {
     if (filter !== value) {
       setFilter(value);

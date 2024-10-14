@@ -13,7 +13,7 @@ function SelectStreamers({ channelList, setShowSelect, onChannelsUpdate }) {
       <h1 className="text-xl text-center mb-2">Add or delete streamers:</h1>
       <p className="mb-4">
         Enter Twitch streamers IDs (30 max) separated by comma, without blank
-        spaces, and click on Save.
+        spaces, and click on Save. Non valid IDs will not show on the list.
       </p>
       <textarea
         className="block w-11/12 h-40 p-2 mb-4 mx-auto"
@@ -24,7 +24,7 @@ function SelectStreamers({ channelList, setShowSelect, onChannelsUpdate }) {
         <button
           className="bg-periwinkle p-2 rounded hover:bg-plavender"
           onClick={() => {
-            onChannelsUpdate(listInput);
+            listInput == channelList.join() ? null : onChannelsUpdate(listInput);
             setShowSelect(false);
           }}
         >
@@ -32,10 +32,7 @@ function SelectStreamers({ channelList, setShowSelect, onChannelsUpdate }) {
         </button>
         <button
           className="bg-periwinkle p-2 rounded hover:bg-plavender"
-          onClick={() => {
-            setListInput(channelList);
-            setShowSelect(false);
-          }}
+          onClick={() => setShowSelect(false)}
         >
           Discard
         </button>

@@ -48,7 +48,8 @@ function App() {
   }
 
   function handleChannelsUpdate(newChannels) {
-    const newChannelsArr = newChannels.split(",")
+    const regex = new RegExp(/\s+/, "gi");
+    const newChannelsArr = newChannels.split(",").filter(x => x !== "" && !regex.test(x));
     setChannelList(newChannelsArr);
     localStorage.setItem("storedChannelList", JSON.stringify(newChannelsArr));
   }

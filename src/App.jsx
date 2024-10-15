@@ -48,6 +48,10 @@ function App() {
   function handleChannelsUpdate(newChannels) {
     const regex = new RegExp(/\s+/, "gi");
     const newChannelsArr = newChannels.split(",").filter(x => x !== "" && !regex.test(x));
+    if (newChannelsArr.length < 1) {
+      alert("The list must have at least one streamer ID");
+      return
+    }
     setChannelList(newChannelsArr);
     localStorage.setItem("storedChannelList", JSON.stringify(newChannelsArr));
   }

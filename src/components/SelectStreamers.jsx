@@ -8,6 +8,15 @@ function SelectStreamers({ channelList, setShowSelect, onChannelsUpdate }) {
     setListInput(e.target.value);
   }
 
+  function handleSaveButtonClick() {
+    listInput == channelList.join() ? null : onChannelsUpdate(listInput);
+    setShowSelect(false);
+  }
+
+  function handleDiscardButtonClick() {
+    setShowSelect(false)
+  }
+
   return (
     <div className="p-4 bg-puce">
       <h1 className="text-xl text-center mb-2">Add or delete streamers:</h1>
@@ -23,16 +32,13 @@ function SelectStreamers({ channelList, setShowSelect, onChannelsUpdate }) {
       <div className="w-11/12 flex justify-end gap-2 mx-auto">
         <button
           className="bg-periwinkle p-2 rounded hover:bg-plavender"
-          onClick={() => {
-            listInput == channelList.join() ? null : onChannelsUpdate(listInput);
-            setShowSelect(false);
-          }}
+          onClick={handleSaveButtonClick}
         >
           Save
         </button>
         <button
           className="bg-periwinkle p-2 rounded hover:bg-plavender"
-          onClick={() => setShowSelect(false)}
+          onClick={handleDiscardButtonClick}
         >
           Discard
         </button>

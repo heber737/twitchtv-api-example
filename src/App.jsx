@@ -4,6 +4,7 @@ import StreamersList from "./components/StreamersList";
 import SelectButton from "./components/SelectButton";
 import SelectStreamers from "./components/SelectStreamers";
 import initialChannelList from "./initialChannelList";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 // LOCAL STORAGE AVAILABILITY TEST
 
@@ -39,21 +40,34 @@ function App() {
   );
   const [showSelect, setShowSelect] = useState(false);
 
-  function handleButtonClick(value) {
+  function handleSelectButtonClick(value) {
     if (filter !== value) {
       setFilter(value);
     }
   }
 
+  function handleDropdownButtonClick() {
+    setShowSelect(!showSelect);
+  }
+
   function handleChannelsUpdate(newChannels) {
     const regex = new RegExp(/\s+/, "gi");
-    const newChannelsArr = newChannels.split(",").filter(x => x !== "" && !regex.test(x));
+    const newChannelsArr = newChannels
+      .split(",")
+      .filter((x) => x !== "" && !regex.test(x));
+    const trimedChannelsArr = newChannelsArr.slice(0, 30);
     if (newChannelsArr.length < 1) {
       alert("The list must have at least one streamer ID");
-      return
+      return;
     }
-    setChannelList(newChannelsArr);
-    localStorage.setItem("storedChannelList", JSON.stringify(newChannelsArr));
+    if (newChannelsArr.length > 30) {
+      alert("Max length exceeded. Only the first 30 IDs where saved.");
+    }
+    setChannelList(trimedChannelsArr);
+    localStorage.setItem(
+      "storedChannelList",
+      JSON.stringify(trimedChannelsArr)
+    );
   }
 
   return (
@@ -63,10 +77,17 @@ function App() {
           Twitch Streamers
         </h1>
         <button
-          className="h-8 w-full text-xl text-center bg-plavender hover:bg-periwinkle"
-          onClick={() => setShowSelect(!showSelect)}
+          className="h-10 w-full text-xl bg-plavender hover:bg-periwinkle"
+          onClick={handleDropdownButtonClick}
         >
-          Update Streamers List
+          <div className="w-full flex justify-center gap-1">
+            <span>Update Streamers List</span>
+            {showSelect ? (
+              <IoMdArrowDropup className="size-8 relative top-[-1px]" />
+            ) : (
+              <IoMdArrowDropdown className="size-8 relative top-[-1px]" />
+            )}
+          </div>
         </button>
         {showSelect && (
           <SelectStreamers
@@ -78,19 +99,19 @@ function App() {
         <div className="bg-periwinkle flex h-8 flex-nowrap items-stretch">
           <SelectButton
             filter={filter}
-            handleClick={handleButtonClick}
+            onSelectButtonClick={handleSelectButtonClick}
             buttonText="ALL"
             bgColor="bg-puce"
           />
           <SelectButton
             filter={filter}
-            handleClick={handleButtonClick}
+            onSelectButtonClick={handleSelectButtonClick}
             buttonText="ONLINE"
             bgColor="bg-plavender"
           />
           <SelectButton
             filter={filter}
-            handleClick={handleButtonClick}
+            onSelectButtonClick={handleSelectButtonClick}
             buttonText="OFFLINE"
             bgColor="bg-periwinkle"
           />

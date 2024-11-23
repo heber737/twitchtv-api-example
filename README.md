@@ -29,4 +29,4 @@ This project was created by [Heber Villalobos](https://github.com/heber737).
 
 ## License
 
-This software is being released under a MIT license.
+This software is being released under a [MIT license](https://github.com/heber737/twitchtv-api-example/blob/main/LICENSE.md).

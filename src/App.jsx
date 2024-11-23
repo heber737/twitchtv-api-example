@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import StreamersList from "./components/StreamersList";
 import SelectButton from "./components/SelectButton";

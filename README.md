@@ -4,7 +4,7 @@
 
 This project is part of my personal curriculum, and it shows a simple use case for the Twitchtv API. It allows the user to edit a default list of Twitch channel's IDs, and it will display a list of cards with basic info about each channel and a link to the streamer's profile.
 
-## Technologies used
+## Technology Stack
 
 - Basic HTML5 for the app entry point.
 - Tailwind CSS for styling, along with minimal custom CSS for the fonts.
@@ -16,7 +16,7 @@ This project is part of my personal curriculum, and it shows a simple use case f
 
 I am still not satisfied with the general layout and maybe will update it with some custom Tailwind components in the future.
 
-## How to Install and Run the Project
+## How to Install and Run this App
 
 - Make sure you have the latest versions of Node.js and Node Package Manager installed in your machine.
 - Clone this repository to a local folder in your machine.

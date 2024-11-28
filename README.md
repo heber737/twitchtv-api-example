@@ -18,8 +18,8 @@ I am still not satisfied with the general layout and maybe will update it with s
 
 ## How to Install and Run this App
 
-- Make sure you have the latest versions of Node.js and Node Package Manager installed in your machine.
-- Clone this repository to a local folder in your machine.
+- Make sure you have the latest versions of Node.js and Node Package Manager installed on your machine.
+- Clone this repository to a local folder on your machine.
 - Open a terminal in the main folder of the project and run `npm install` to install the project's dependencies.
 - Finally, run `npm run dev`, then navigate to http://localhost:5173/ in your web browser to use the app.
 
